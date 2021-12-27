@@ -7,7 +7,7 @@ import 'package:flutter_uploading_file/services/service.dart';
 class UploadFile {
   HttpService httpService = HttpService();
 
-  void uploadFile(File file) async {
+  Future uploadFile(File file) async {
     httpService.init();
     logger.e("Data to be sent: ${file.path}");
     MultipartFile multipartFile = await MultipartFile.fromFile(file.path,
@@ -18,6 +18,7 @@ class UploadFile {
 
     final result = await httpService.request(
         url: "uploadFile", method: Method.POST, data: formData);
-    logger.i("Received Result: $result");
+    logger.i("Received Result: $result ");
+    return result;
   }
 }
