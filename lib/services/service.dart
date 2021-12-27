@@ -49,7 +49,6 @@ class HttpService {
 
     try {
       if (method == Method.POST) {
-        logger.i("isParams: $params");
         response = await _dio!.post(url, data: params ?? data);
       } else if (method == Method.DELETE) {
         response = await _dio!.delete(url);

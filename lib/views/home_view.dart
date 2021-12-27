@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uploading_file/constants/constants.dart';
 
 import 'package:flutter_uploading_file/controllers/upload_file.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum ImageSourceType { gallery, camera }
@@ -79,10 +82,20 @@ class _HomeViewState extends State<HomeView> {
                             vertical: 20, horizontal: 75),
                         onPrimary: Colors.white, // foreground
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         UploadFile uf = UploadFile();
 
-                        var result = uf.uploadFile(_image);
+                        var res = await uf.uploadFile(_image);
+
+                        if (res.data['result'] == "success") {
+                          Fluttertoast.showToast(
+                              msg: "Image uploaded to server",
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.black,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        }
                       },
                       child: const Text('Upload Image to server'),
                     )
