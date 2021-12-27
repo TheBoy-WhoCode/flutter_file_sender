@@ -1,9 +1,5 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uploading_file/constants/constants.dart';
-
 import 'package:flutter_uploading_file/controllers/upload_file.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
